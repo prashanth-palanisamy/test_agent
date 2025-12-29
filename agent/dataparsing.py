@@ -64,11 +64,11 @@ def _single_cloud_parser(response, TERRAFORM_DIR):
     # This regex looks for:
     # 1. A path/filename (can include slashes)
     # 2. A terraform code block wrapped in ```
-    pattern = r"([a-zA-Z0-9\._\-/]+)\n```(?:terraform|hcl)?\n(.*?)\n```"
+    pattern = r"([^\s\n]+\.(?:tf|tfvars|tf\.json))\n(.*?)(?=\n[^\s\n]+\.(?:tf|tfvars|tf\.json)|\Z)"
     matches = re.findall(pattern, response, re.DOTALL)
+    print(f"matches {matches}")
 
     if not matches:
-        print("❌ Parsing failed — no files detected.")
         return "❌ Parsing failed — no files detected."
 
     for filepath_raw, filecontent in matches:

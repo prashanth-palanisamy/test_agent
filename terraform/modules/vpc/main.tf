@@ -6,20 +6,34 @@ resource "aws_vpc" "this" {
 }
 
 resource "aws_subnet" "this" {
-  cidr_block = var.subnet_cidr_block
-  vpc_id     = aws_vpc.this.id
+  vpc_id            = aws_vpc.this.id
+  cidr_block        = var.subnet_cidr_block
   availability_zone = var.availability_zone
+  tags = {
+    Name = "${var.name}-subnet"
+  }
 }
 
 resource "aws_security_group" "this" {
-  name        = var.security_group_name
-  description = var.security_group_description
+  name        = var.name
+  description = "Security group for VPC"
   vpc_id      = aws_vpc.this.id
 
   ingress {
-    from_port   = var.security_group_ingress_from_port
-    to_port     = var.security_group_ingress_to_port
-    protocol    = var.security_group_ingress_protocol
-    cidr_blocks = var.security_group_ingress_cidr_blocks
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = var.name
   }
 }
