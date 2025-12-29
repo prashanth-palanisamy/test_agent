@@ -129,6 +129,7 @@ Thumbs.db
             protocol_removed = protocol_removed.split("@", 1)[-1]
         auth_url = f"https://{username}:{token}@{protocol_removed}"
         origin.set_url(auth_url)
+        print(f"remote url : {auth_url}")
 
     # Handle ongoing rebase (auto continue with commit --no-edit)
     rebase_merge_dir = os.path.join(BASE_DIR, ".git", "rebase-merge")
@@ -170,6 +171,7 @@ Thumbs.db
         repo.git.pull('origin', branch)
 
     # Push changes
+    print("reached to git push")
     origin.push(branch)
 
     return f"✅ Commit, pull & push to {branch} done."
