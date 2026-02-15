@@ -1,49 +1,40 @@
 variable "identifier" {
   type        = string
-  description = "Identifier for RDS instance"
+  description = "The identifier of the DB instance"
 }
 
 variable "allocated_storage" {
   type        = number
-  description = "Allocated storage for RDS instance"
+  description = "The amount of storage to allocate for the DB instance"
 }
 
 variable "engine" {
   type        = string
-  description = "Engine for RDS instance"
+  description = "The database engine to use"
 }
 
 variable "engine_version" {
   type        = string
-  description = "Engine version for RDS instance"
+  description = "The version of the database engine to use"
 }
 
 variable "instance_class" {
   type        = string
-  description = "Instance class for RDS instance"
-}
-
-variable "name" {
-  type        = string
-  description = "Name for RDS instance"
+  description = "The instance class to use for the DB instance"
 }
 
 variable "username" {
   type        = string
-  description = "Username for RDS instance"
+  description = "The username for the DB instance"
 }
 
 variable "password" {
   type        = string
-  description = "Password for RDS instance"
+  sensitive   = true
+  description = "The password for the DB instance"
 }
 
 variable "security_group_id" {
   type        = string
-  description = "Security group ID for RDS instance"
-}
-
-variable "subnet_id" {
-  type        = string
-  description = "Subnet ID for RDS instance"
+  description = "The ID of the security group"
 }

@@ -13,7 +13,7 @@ def contentparsing(response: str):
     # Regex to detect cloud sections (### AWS: modules/aws/, ### Azure: modules/azure/, etc.)
     cloud_section_pattern = r"###\s*(\w+):\s*(modules/[^\n/]+/)"
     cloud_sections = re.split(cloud_section_pattern, response)
-    # print(cloud_sections)
+    print(f"print cloud_sections:  {cloud_sections}")
 
     if len(cloud_sections) <= 1:
         print("⚠️ No cloud sections found. Falling back to single parser.")
@@ -64,7 +64,8 @@ def _single_cloud_parser(response, TERRAFORM_DIR):
     # This regex looks for:
     # 1. A path/filename (can include slashes)
     # 2. A terraform code block wrapped in ```
-    pattern = r"([^\s\n]+\.(?:tf|tfvars|tf\.json))\n(.*?)(?=\n[^\s\n]+\.(?:tf|tfvars|tf\.json)|\Z)"
+    #pattern = r"([^\s\n]+\.(?:tf|tfvars|tf\.json))\n(.*?)(?=\n[^\s\n]+\.(?:tf|tfvars|tf\.json)|\Z)"
+    pattern = r"\s*([^\n]+\.(?:tf|tfvars|tf.json))\n```[\w]*\n(.*?)```"
     matches = re.findall(pattern, response, re.DOTALL)
     print(f"matches {matches}")
 

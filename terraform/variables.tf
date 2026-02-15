@@ -1,79 +1,80 @@
-variable "vpc_cidr_block" {
+variable "cidr_block" {
   type        = string
-  description = "CIDR block for VPC"
+  description = "The CIDR block for the VPC"
 }
 
-variable "vpc_name" {
-  type        = string
-  description = "Name for VPC"
+variable "tags" {
+  type        = map(string)
+  description = "A map of tags to add to the VPC"
 }
 
-variable "vpc_subnet_cidr_block" {
+variable "subnet_cidr_block" {
   type        = string
-  description = "CIDR block for subnet"
+  description = "The CIDR block for the subnet"
 }
 
-variable "vpc_availability_zone" {
+variable "availability_zone" {
   type        = string
-  description = "Availability zone for subnet"
+  description = "The availability zone for the subnet"
+}
+
+variable "security_group_name" {
+  type        = string
+  description = "The name of the security group"
+}
+
+variable "security_group_description" {
+  type        = string
+  description = "The description of the security group"
 }
 
 variable "ec2_ami" {
   type        = string
-  description = "AMI for EC2 instance"
+  description = "The ID of the AMI"
 }
 
 variable "ec2_instance_type" {
   type        = string
-  description = "Instance type for EC2 instance"
+  description = "The type of instance to start"
 }
 
 variable "ec2_key_name" {
   type        = string
-  description = "Key name for EC2 instance"
-}
-
-variable "ec2_name" {
-  type        = string
-  description = "Name for EC2 instance"
+  description = "The name of the key to use for the instance"
 }
 
 variable "rds_identifier" {
   type        = string
-  description = "Identifier for RDS instance"
+  description = "The identifier of the DB instance"
 }
 
 variable "rds_allocated_storage" {
   type        = number
-  description = "Allocated storage for RDS instance"
+  description = "The amount of storage to allocate for the DB instance"
 }
 
 variable "rds_engine" {
   type        = string
-  description = "Engine for RDS instance"
+  description = "The database engine to use"
 }
 
 variable "rds_engine_version" {
   type        = string
-  description = "Engine version for RDS instance"
+  description = "The version of the database engine to use"
 }
 
 variable "rds_instance_class" {
   type        = string
-  description = "Instance class for RDS instance"
-}
-
-variable "rds_name" {
-  type        = string
-  description = "Name for RDS instance"
+  description = "The instance class to use for the DB instance"
 }
 
 variable "rds_username" {
   type        = string
-  description = "Username for RDS instance"
+  description = "The username for the DB instance"
 }
 
 variable "rds_password" {
   type        = string
-  description = "Password for RDS instance"
+  sensitive   = true
+  description = "The password for the DB instance"
 }

@@ -231,13 +231,12 @@ def git_ops_agent():
             st.success(result)
         except Exception as e:
             st.error(f"❌ Git commit/push failed: {e}")
-        st.warning("Ensure paths are normalized with .replace('\\\\', '/') before pushing!")
 
 
 # --- NAVIGATION SETUP ---
 pg = st.navigation([
     st.Page(iac_agent, title="IAC-Agent", icon="🏗️"),
-    st.Page(jenkins_agent, title="Jenkins-Agent", icon="🚀"),
+    # st.Page(jenkins_agent, title="Jenkins-Agent", icon="🚀"),
     st.Page(git_ops_agent, title="Git-Ops Agent", icon="📦"),
 ])
 
